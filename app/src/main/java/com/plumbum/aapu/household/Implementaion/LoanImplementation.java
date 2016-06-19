@@ -88,7 +88,7 @@ public class LoanImplementation implements LoanInterface
      */
 
     @Override
-    public Cursor fetchCategory(String query)
+    public Cursor fetchLoan(String query)
     {
         return loanDAO.getInstance(getAppContext()).fetchQuery(query);
     }

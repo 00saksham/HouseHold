@@ -15,7 +15,7 @@ import java.sql.Date;
 public class DebtImplementation implements DebtInterface
 {
     private DebtDAO debtDAO = null;
-    private DebtVO debtVO = null;
+    private DebtVO debtVO = new DebtVO();
 
     private static Context context;
     private static DebtImplementation instance;
@@ -88,7 +88,7 @@ public class DebtImplementation implements DebtInterface
      */
 
     @Override
-    public Cursor fetchCategory(String query)
+    public Cursor fetchDebt(String query)
     {
         return debtDAO.getInstance(getAppContext()).fetchQuery(query);
     }

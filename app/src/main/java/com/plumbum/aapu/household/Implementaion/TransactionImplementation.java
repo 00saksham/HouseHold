@@ -87,7 +87,7 @@ public class TransactionImplementation implements TransactionInterface
      */
 
     @Override
-    public Cursor fetchCategory(String query)
+    public Cursor fetchTransaction(String query)
     {
         return transactionDAO.getInstance(getAppContext()).fetchQuery(query);
     }

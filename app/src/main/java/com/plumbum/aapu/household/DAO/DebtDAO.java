@@ -13,7 +13,7 @@ import java.sql.Date;
  */
 public class DebtDAO
 {
-    private DBAdapter dbAdapter = null;
+    private DBAdapter dbAdapter;
     private static Context context;
     private static DebtDAO instance = null;
     private static String DEBT_TABLE_NAME="DEBT";
