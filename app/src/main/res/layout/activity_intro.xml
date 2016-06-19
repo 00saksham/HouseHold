@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.plumbum.aapu.household.IntroActivity">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/introbg" />
+
+    <TextView
+        android:id="@+id/activity_intro_display_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:shadowDx="2"
+        android:shadowDy="2"
+        android:shadowRadius="100"
+        android:text="Lets get started.."
+        android:textColor="#ffffff"
+        android:textSize="40sp"
+        android:typeface="normal" />
+
+    <ImageView
+        android:id="@+id/activity_intro_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/activity_intro_display_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/ic_account_balance_wallet_black_24dp" />
+
+    <EditText
+        android:layout_marginTop="75dp"
+        android:id="@+id/activiy_intro_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/activity_intro_icon"
+        android:hint="Name"
+        android:textColor="#ffffff"
+        android:textColorHint="#ffffff"
+        android:textSize="24sp" />
+
+    <EditText
+        android:id="@+id/activiy_intro_balance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/activiy_intro_name"
+        android:hint="Starting balance"
+        android:textColor="#ffffff"
+        android:textColorHint="#ffffff"
+        android:textSize="24sp" />
+
+    <Button
+       android:id="@+id/activity_intro_start_button"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+android:layout_alignParentBottom="true"
+        android:layout_marginBottom="100dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/button"
+        android:text="START"
+        android:textSize="20sp"
+
+
+        />
+
+</RelativeLayout>
