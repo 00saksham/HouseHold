@@ -1,5 +1,7 @@
 package com.plumbum.aapu.household.Interface;
 
+import android.database.Cursor;
+
 import java.sql.Date;
 
 /**
@@ -7,9 +9,9 @@ import java.sql.Date;
  */
 public interface DebtInterface //Debt -> Given to someone (Receivable)
 {
-    public abstract boolean addDebt(float sum, String borrower, Date from,Date to,String remarks,Boolean exclude);
-                                    //Exclude means if the amount needs to be excluded from total
-
-    public abstract boolean deleteDebt(int id);
-    public abstract boolean updateDebt(float sum, String borrower, Date from,Date to,String remarks,Boolean exclude);
+    //Exclude means if the amount needs to be excluded from total
+    public abstract void addDebt(float sum, String borrower, Date from,Date to,String remarks,Boolean exclude);
+    public abstract Cursor fetchCategory(String query);
+    public abstract void deleteDebt(int id);
+    public abstract void updateDebt(int id,float sum, String borrower, Date from,Date to,String remarks,Boolean exclude);
 }

@@ -1,5 +1,7 @@
 package com.plumbum.aapu.household.Interface;
 
+import android.database.Cursor;
+
 import java.sql.Blob;
 
 /**
@@ -7,7 +9,8 @@ import java.sql.Blob;
  */
 public interface CategoryInterface
 {
-    public abstract boolean addCategory(String name, Blob icon);
-    public abstract boolean deleteCategory(int id);
-    public abstract boolean updateCategory(String name, Blob icon);
+    public abstract void addCategory(String category_name, Blob category_icon);
+    public abstract Cursor fetchCategory(String query);
+    public abstract void deleteCategory(int id);
+    public abstract void updateCategory(int id,String category_name, Blob category_icon);
 }

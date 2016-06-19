@@ -1,5 +1,7 @@
 package com.plumbum.aapu.household.Interface;
 
+import android.database.Cursor;
+
 import java.sql.Date;
 
 /**
@@ -7,9 +9,11 @@ import java.sql.Date;
  */
 public interface LoanInterface //Loan -> Sum taken from someone (Payable)
 {
-    public abstract boolean addLoan(float sum, String lender, Date from, Date to, String remarks, Boolean exclude);
+
     //Exclude means if the amount needs to be excluded from total
 
-    public abstract boolean deleteLoan(int id);
-    public abstract boolean updateLoan(float sum, String lender, Date from,Date to,String remarks,Boolean exclude);
+    public abstract void addLoan(float sum, String lender, Date from, Date to, String remarks, Boolean exclude);
+    public abstract Cursor fetchCategory(String query);
+    public abstract void deleteLoan(int id);
+    public abstract void updateLoan(int id,float sum, String lender, Date from,Date to,String remarks,Boolean exclude);
 }
