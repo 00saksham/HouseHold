@@ -3,72 +3,61 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:focusable="true"
     tools:context="com.plumbum.aapu.household.IntroActivity">
-
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:alpha="0.4"
         android:scaleType="centerCrop"
-        android:src="@drawable/introbg" />
-
-    <TextView
-        android:id="@+id/activity_intro_display_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:shadowDx="2"
-        android:shadowDy="2"
-        android:shadowRadius="100"
-        android:text="Lets get started.."
-        android:textColor="#ffffff"
-        android:textSize="40sp"
-        android:typeface="normal" />
+        android:src="@drawable/intro_bg_02" />
 
     <ImageView
         android:id="@+id/activity_intro_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/activity_intro_display_text"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"
-        android:src="@drawable/ic_account_balance_wallet_black_24dp" />
-
-    <EditText
-        android:id="@+id/activiy_intro_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/activity_intro_icon"
-        android:layout_marginTop="75dp"
-        android:hint="Name"
-        android:textColor="#ffffff"
-        android:textColorHint="#ffffff"
-        android:textSize="24sp" />
-
-    <EditText
-        android:id="@+id/activiy_intro_balance"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/activiy_intro_name"
-        android:hint="Starting balance"
-        android:textColor="#ffffff"
-        android:textColorHint="#ffffff"
-        android:textSize="24sp" />
+        android:layout_marginTop="100dp"
+        android:scaleType="centerCrop"
+        />
 
     <Button
-        android:id="@+id/activity_intro_start_button"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/activity_intro_button"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="100dp"
-        android:background="@drawable/button"
-        android:elevation="-2dp"
-        android:text="START"
-        android:textSize="20sp"
+        android:layout_marginBottom="72dp"
+        android:layout_marginLeft="60dp"
+        android:background="@drawable/rounded_button_intro_activity"
+        android:textColor="#FFFFFF"
+        android:text="START" />
 
+    <EditText
+        android:id="@+id/activity_intro_starting_balance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/activity_intro_button"
+        android:layout_marginBottom="64dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:textColorHint="#000000"
+        android:hint="Starting Balance"
+        android:inputType="number"
+        android:textSize="24sp" />
 
-        />
+    <EditText
+        android:id="@+id/activity_intro_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/activity_intro_starting_balance"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:hint="Hello"
+        android:textColorHint="#000000"
+        android:textSize="24sp" />
+
 
 </RelativeLayout>
