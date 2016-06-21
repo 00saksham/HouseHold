@@ -31,28 +31,31 @@
         android:textStyle="bold" />
 
     <android.support.v7.widget.CardView
+        android:id="@+id/content_categories_card1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/content_category_button_expense"
         android:layout_margin="8dp">
 
 
-        <ListView
+    <ListView
 
-            android:id="@+id/content_category_button_list1"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:divider="@null"
-            android:dividerHeight="0dp"
-            android:layout_below="@+id/content_category_button_expense"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"></ListView>
+        android:id="@+id/content_category_button_list1"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/content_category_button_expense"
+        android:divider="@null"
+        android:dividerHeight="0dp"></ListView>
+    </android.support.v7.widget.CardView>
+
 
     <TextView
         android:id="@+id/content_category_button_saving"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/content_category_button_list1"
+        android:layout_below="@id/content_categories_card1"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="30dp"
         android:text="Savings"
