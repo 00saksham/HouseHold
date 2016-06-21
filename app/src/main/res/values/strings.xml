@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">HouseHold</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_add_transaction">AddTransactionActivity</string>
+    <string name="title_activity_add_category">AddCategoryActivity</string>
+    <string name="title_activity_category_button">CategoryButtonActivity</string>
+    <string name="title_activity_categories">CategoriesActivity</string>
 </resources>

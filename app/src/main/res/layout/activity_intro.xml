@@ -36,11 +36,11 @@
         android:src="@drawable/ic_account_balance_wallet_black_24dp" />
 
     <EditText
-        android:layout_marginTop="75dp"
         android:id="@+id/activiy_intro_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/activity_intro_icon"
+        android:layout_marginTop="75dp"
         android:hint="Name"
         android:textColor="#ffffff"
         android:textColorHint="#ffffff"
@@ -57,13 +57,14 @@
         android:textSize="24sp" />
 
     <Button
-       android:id="@+id/activity_intro_start_button"
+        android:id="@+id/activity_intro_start_button"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-android:layout_alignParentBottom="true"
-        android:layout_marginBottom="100dp"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="100dp"
         android:background="@drawable/button"
+        android:elevation="-2dp"
         android:text="START"
         android:textSize="20sp"
 
