@@ -22,7 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".IntroActivity" />
+
         <activity
             android:name=".AddTransactionActivity"
             android:label="@string/title_activity_add_transaction"
