@@ -23,7 +23,7 @@
         />
 
     <Button
-        android:id="@+id/activity_intro_button"
+        android:id="@+id/activity_intro_start_button"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_alignParentBottom="true"
@@ -32,13 +32,14 @@
         android:layout_marginLeft="60dp"
         android:background="@drawable/rounded_button_intro_activity"
         android:text="START"
-        android:textColor="#FFFFFF" />
+        android:textColor="#FFFFFF"
+        android:onClick="setUserDetails"/>
 
     <EditText
-        android:id="@+id/activity_intro_starting_balance"
+        android:id="@+id/activity_intro_user_starting_balance"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/activity_intro_button"
+        android:layout_above="@id/activity_intro_start_button"
         android:layout_marginBottom="64dp"
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
@@ -49,13 +50,15 @@
         android:textSize="24sp" />
 
     <EditText
-        android:id="@+id/activity_intro_name"
+        android:id="@+id/activity_intro_user_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@id/activity_intro_starting_balance"
+        android:layout_above="@id/activity_intro_user_starting_balance"
         android:layout_marginBottom="16dp"
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
+        android:singleLine="true"
+        android:lines="1"
         android:hint="Hello"
         android:drawablePadding="16dp"
         android:drawableLeft="@drawable/identity"
