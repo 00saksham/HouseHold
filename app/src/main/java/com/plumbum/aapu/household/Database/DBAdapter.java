@@ -35,7 +35,7 @@ public class DBAdapter extends SQLiteOpenHelper
     private static final String CATEGORY_TABLE_NAME = "CATEGORY";
     private static final String DEBT_TABLE_NAME = "DEBT";
     private static final String LOAN_TABLE_NAME = "LOAN";
-    private static final String TRANSACTION_TABLE_NAME = "TRANSACTION";
+    private static final String TRANSACTIONS_TABLE_NAME = "TRANSACTIONS";
 
     private static final String CATEGORY_COLUMN_CATEGORY_NAME = "CATEGORY_NAME ";
     private static final String CATEGORY_COLUMN_CATEGORY_ICON = "CATEGORY_ICON ";
@@ -113,15 +113,15 @@ public class DBAdapter extends SQLiteOpenHelper
                                    LOAN_COLUMN_DATE_FROM + DATE + LOAN_COLUMN_DATE_TO + DATE +
                                    LOAN_COLUMN_REMARKS + VARCHAR_100 + LOAN_COLUMN_EXCLUDE + BOOLEAN_NOT_NULL +");";
 
-        String CREATE_TRANSACTION_TABLE = CREATE + TRANSACTION_TABLE_NAME + "(" + ID +
-                                          TRANSACTION_COLUMN_SUM + FLOAT_NOT_NULL + TRANSACTION_COLUMN_DATE + DATE_NOT_NULL +
+        String CREATE_TRANSACTION_TABLE = CREATE + TRANSACTIONS_TABLE_NAME + " (" + ID +
+                                          TRANSACTION_COLUMN_SUM + FLOAT_NOT_NULL + TRANSACTION_COLUMN_DATE + DATE +
                                           TRANSACTION_COLUMN_REMARKS + VARCHAR_100 + TRANSACTION_COLUMN_CATEGORY_NAME +
                                           VARCHAR_20_NOT_NULL + TRANSACTION_COLUMN_CATEGORY_ICON +BLOB_NOT_NULL + ");";
 
         db.execSQL(CREATE_CATEGORY_TABLE);
         db.execSQL(CREATE_DEBT_TABLE);
         db.execSQL(CREATE_LOAN_TABLE);
-        //db.execSQL(CREATE_TRANSACTION_TABLE);
+        db.execSQL(CREATE_TRANSACTION_TABLE);
 
     }
 
@@ -138,7 +138,7 @@ public class DBAdapter extends SQLiteOpenHelper
         db.execSQL(DROP+CATEGORY_TABLE_NAME);
         db.execSQL(DROP+DEBT_TABLE_NAME);
         db.execSQL(DROP+LOAN_TABLE_NAME);
-        db.execSQL(DROP+TRANSACTION_TABLE_NAME);
+        db.execSQL(DROP+TRANSACTIONS_TABLE_NAME);
 
         onCreate(db);
 
