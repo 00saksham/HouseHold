@@ -26,9 +26,7 @@
                 android:layout_marginLeft="10dp"
                 android:text="Overview"
                 android:textSize="34sp"
-                android:textStyle="bold"
-
-                />
+                android:textStyle="bold" />
 
             <RelativeLayout
 
