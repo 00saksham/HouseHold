@@ -60,10 +60,11 @@ public class CategoryImplementation implements CategoryInterface
      */
 
     @Override
-    public void addCategory(String category_name, Blob category_icon)
+    public void addCategory(String category_name, Blob category_icon,String category_type)
     {
         categoryVO.setCategory_name(category_name);
         categoryVO.setCategory_icon(category_icon);
+        categoryVO.setCategory_type(category_type);
 
         categoryDAO.getInstance(getAppContext()).addQuery(categoryVO);
     }
@@ -96,11 +97,12 @@ public class CategoryImplementation implements CategoryInterface
      */
 
     @Override
-    public void updateCategory(int id,String category_name, Blob category_icon)
+    public void updateCategory(int id,String category_name, Blob category_icon,String category_type)
     {
         categoryVO.setId(id);
         categoryVO.setCategory_icon(category_icon);
         categoryVO.setCategory_name(category_name);
+        categoryVO.setCategory_type(category_type);
 
         categoryDAO.getInstance(getAppContext()).updateQuery(categoryVO);
 

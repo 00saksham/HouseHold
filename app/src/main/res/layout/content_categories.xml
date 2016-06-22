@@ -11,21 +11,12 @@
     tools:showIn="@layout/activity_categories">
 
     <TextView
-        android:id="@+id/content_category_button_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:text="Categories"
-        android:textSize="34sp"
-        android:textStyle="bold" />
-
-    <TextView
         android:id="@+id/content_category_button_expense"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/content_category_button_title"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="30dp"
+        android:layout_marginBottom="8dp"
         android:text="Expenses"
         android:textSize="24sp"
         android:textStyle="bold" />
@@ -40,7 +31,7 @@
 
     <ListView
 
-        android:id="@+id/content_category_button_list1"
+        android:id="@+id/content_category_button_list_expense"
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:layout_alignParentLeft="true"
@@ -58,6 +49,7 @@
         android:layout_below="@id/content_categories_card1"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="30dp"
+        android:layout_marginBottom="8dp"
         android:text="Savings"
         android:textSize="24sp"
         android:textStyle="bold" />
@@ -71,7 +63,7 @@
 
         <ListView
 
-            android:id="@+id/content_category_button_list2"
+            android:id="@+id/content_category_button_list_saving"
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:divider="@null"

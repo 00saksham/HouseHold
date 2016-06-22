@@ -9,8 +9,8 @@ import java.sql.Blob;
  */
 public interface CategoryInterface
 {
-    public abstract void addCategory(String category_name, Blob category_icon);
+    public abstract void addCategory(String category_name, Blob category_icon,String category_type);
     public abstract Cursor fetchCategory(String query);
     public abstract void deleteCategory(int id);
-    public abstract void updateCategory(int id,String category_name, Blob category_icon);
+    public abstract void updateCategory(int id,String category_name, Blob category_icon,String category_type);
 }

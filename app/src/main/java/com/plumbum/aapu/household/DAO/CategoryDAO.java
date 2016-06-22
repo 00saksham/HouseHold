@@ -22,6 +22,7 @@ public class CategoryDAO
 
     private static String CATEGORY_NAME = null;
     private static Blob CATEGORY_ICON = null;
+    private static String CATEGORY_TYPE = null;
     private static int CATEGORY_ID = 0;
 
     /*
@@ -65,8 +66,9 @@ public class CategoryDAO
     {
         CATEGORY_NAME = categoryVO.getCategory_name();
         CATEGORY_ICON = categoryVO.getCategory_icon();
-
-        QUERY = INSERT + CATEGORY_TABLE_NAME + "(category_name,category_icon) VALUES ('"+CATEGORY_NAME+"','"+CATEGORY_ICON+"');" ;
+        CATEGORY_TYPE = categoryVO.getCategory_type();
+        QUERY = INSERT + CATEGORY_TABLE_NAME + "(category_name,category_icon,category_type) VALUES ('"+CATEGORY_NAME+"','"+CATEGORY_ICON+
+                "','"+CATEGORY_TYPE+"');" ;
 
         dbAdapter.getInstance(getAppContext()).anyQuery(QUERY);
     }
@@ -106,7 +108,9 @@ public class CategoryDAO
         CATEGORY_NAME = categoryVO.getCategory_name();
         CATEGORY_ICON = categoryVO.getCategory_icon();
         CATEGORY_ID   = categoryVO.getId();
-        QUERY = "UPDATE "+CATEGORY_TABLE_NAME+" SET category_name='"+CATEGORY_NAME+"',category_icon='"+CATEGORY_ICON+"' " +
+        CATEGORY_TYPE = categoryVO.getCategory_type();
+        QUERY = "UPDATE "+CATEGORY_TABLE_NAME+" SET category_name='"+CATEGORY_NAME+"',category_icon='"+CATEGORY_ICON+
+                "',category_type='"+CATEGORY_TYPE+"' " +
                 "WHERE _id="+CATEGORY_ID+";";
 
         dbAdapter.getInstance(getAppContext()).anyQuery(QUERY);

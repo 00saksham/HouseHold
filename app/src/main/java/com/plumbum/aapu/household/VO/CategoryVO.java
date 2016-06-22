@@ -9,6 +9,7 @@ public class CategoryVO
 {
     String category_name;
     Blob category_icon;
+    String category_type;
     int id;
 
     public Blob getCategory_icon() {
@@ -33,5 +34,13 @@ public class CategoryVO
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getCategory_type() {
+        return category_type;
+    }
+
+    public void setCategory_type(String category_type) {
+        this.category_type = category_type;
     }
 }

@@ -39,6 +39,7 @@ public class DBAdapter extends SQLiteOpenHelper
 
     private static final String CATEGORY_COLUMN_CATEGORY_NAME = "CATEGORY_NAME ";
     private static final String CATEGORY_COLUMN_CATEGORY_ICON = "CATEGORY_ICON ";
+    private static final String CATEGORY_COLUMN_CATEGORY_TYPE = "CATEGORY_TYPE ";
 
     private static final String DEBT_COLUMN_SUM = "SUM ";
     private static final String DEBT_COLUMN_BORROWER = "BORROWER ";
@@ -101,7 +102,8 @@ public class DBAdapter extends SQLiteOpenHelper
     {
         String CREATE_CATEGORY_TABLE = CREATE + CATEGORY_TABLE_NAME + "(" + ID +
                                        CATEGORY_COLUMN_CATEGORY_NAME +""+ VARCHAR_20_NOT_NULL +
-                                       CATEGORY_COLUMN_CATEGORY_ICON +""+ BLOB_NOT_NULL  +");";
+                                       CATEGORY_COLUMN_CATEGORY_ICON +""+ BLOB_NOT_NULL  +
+                                       CATEGORY_COLUMN_CATEGORY_TYPE +""+ VARCHAR_20_NOT_NULL + ");";
 
         String CREATE_DEBT_TABLE = CREATE + DEBT_TABLE_NAME + "(" + ID +
                                    DEBT_COLUMN_SUM + FLOAT_NOT_NULL + DEBT_COLUMN_BORROWER +
