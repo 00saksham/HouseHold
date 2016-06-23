@@ -7,16 +7,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * @desc  A fragment use to represent Saving Category List In Category Button
+ *  @desc  A fragment use to represent Receivable Amount(DEBT) List In Debts/Loan Activity
  */
-public class CategorySavingsFragment extends Fragment {
+public class ReceivableFragment extends Fragment
+{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_savings_category, container, false);
-
-
+        View view = inflater.inflate(R.layout.fragment_receivable, container, false);
         return view;
     }
 
