@@ -7,17 +7,15 @@ import com.plumbum.aapu.household.DAO.CategoryDAO;
 import com.plumbum.aapu.household.Interface.CategoryInterface;
 import com.plumbum.aapu.household.VO.CategoryVO;
 
-import java.sql.Blob;
-
 /**
  * Created by Dawn on 6/18/2016.
  */
 public class CategoryImplementation implements CategoryInterface
 {
-    private CategoryVO categoryVO = null;
+    private CategoryVO categoryVO = new CategoryVO();
     private CategoryDAO categoryDAO = null;
 
-    private static CategoryImplementation instance = null;
+    private static CategoryImplementation instance ;
     private static Context context;
 
 
@@ -60,7 +58,7 @@ public class CategoryImplementation implements CategoryInterface
      */
 
     @Override
-    public void addCategory(String category_name, Blob category_icon,String category_type)
+    public void addCategory(String category_name, byte[] category_icon,String category_type)
     {
         categoryVO.setCategory_name(category_name);
         categoryVO.setCategory_icon(category_icon);
@@ -97,7 +95,7 @@ public class CategoryImplementation implements CategoryInterface
      */
 
     @Override
-    public void updateCategory(int id,String category_name, Blob category_icon,String category_type)
+    public void updateCategory(int id,String category_name, byte[] category_icon,String category_type)
     {
         categoryVO.setId(id);
         categoryVO.setCategory_icon(category_icon);

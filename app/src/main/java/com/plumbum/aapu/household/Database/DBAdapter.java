@@ -1,9 +1,12 @@
 package com.plumbum.aapu.household.Database;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.plumbum.aapu.household.VO.CategoryVO;
 
 /**
  * Created by Dawn on 6/18/2016.
@@ -12,9 +15,6 @@ public class DBAdapter extends SQLiteOpenHelper
 {
 
     private static DBAdapter instance;
-    private DBAdapter dbAdapter;
-
-    //public static Context context;
 
     private static final String DATABASE_NAME = "HouseHold";
     private static final int DATABASE_VERSION = 1;
@@ -102,8 +102,8 @@ public class DBAdapter extends SQLiteOpenHelper
     {
         String CREATE_CATEGORY_TABLE = CREATE + CATEGORY_TABLE_NAME + "(" + ID +
                                        CATEGORY_COLUMN_CATEGORY_NAME +""+ VARCHAR_20_NOT_NULL +
-                                       CATEGORY_COLUMN_CATEGORY_ICON +""+ BLOB_NOT_NULL  +
-                                       CATEGORY_COLUMN_CATEGORY_TYPE +""+ VARCHAR_20_NOT_NULL + ");";
+                                       CATEGORY_COLUMN_CATEGORY_TYPE +""+ VARCHAR_20_NOT_NULL +
+                                       CATEGORY_COLUMN_CATEGORY_ICON +""+ BLOB_NOT_NULL  + ");";
 
         String CREATE_DEBT_TABLE = CREATE + DEBT_TABLE_NAME + "(" + ID +
                                    DEBT_COLUMN_SUM + FLOAT_NOT_NULL + DEBT_COLUMN_BORROWER +
@@ -176,6 +176,19 @@ public class DBAdapter extends SQLiteOpenHelper
         SQLiteDatabase db = this.getWritableDatabase();
 
         db.execSQL(query);
+    }
+
+
+    public void insertCategory(CategoryVO categoryVO)
+    {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(CATEGORY_COLUMN_CATEGORY_NAME,categoryVO.getCategory_name());
+        contentValues.put(CATEGORY_COLUMN_CATEGORY_TYPE,categoryVO.getCategory_type());
+        contentValues.put(CATEGORY_COLUMN_CATEGORY_ICON,categoryVO.getCategory_icon());
+
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+
+        sqLiteDatabase.insert(CATEGORY_TABLE_NAME,null,contentValues);
     }
 
 }

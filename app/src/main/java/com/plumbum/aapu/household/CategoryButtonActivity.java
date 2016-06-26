@@ -1,5 +1,6 @@
 package com.plumbum.aapu.household;
 
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -11,13 +12,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.plumbum.aapu.household.Database.DBAdapter;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryButtonActivity extends AppCompatActivity{
+public class CategoryButtonActivity extends AppCompatActivity {
 
     private TabLayout tabLayout;
     ViewPager viewPager;
+    SQLiteDatabase sqLiteDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +31,8 @@ public class CategoryButtonActivity extends AppCompatActivity{
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        sqLiteDatabase = openOrCreateDatabase("HouseHold",MODE_PRIVATE,null);
 
         viewPager = (ViewPager) findViewById(R.id.content_category_button_pager);
         setupViewPager(viewPager);
@@ -47,10 +53,13 @@ public class CategoryButtonActivity extends AppCompatActivity{
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new PayableFragment(), "PAYABLE");
-        adapter.addFragment(new ReceivableFragment(), "RECEIVABLE");
+        adapter.addFragment(new CategoryExpenseFragment(), "EXPENSE");
+        adapter.addFragment(new CategorySavingsFragment(), "SAVING");
+
         viewPager.setAdapter(adapter);
     }
+
+
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<android.support.v4.app.Fragment> mFragmentList = new ArrayList<>();
@@ -80,4 +89,11 @@ public class CategoryButtonActivity extends AppCompatActivity{
             return mFragmentTitleList.get(position);
         }
     }
+
+    public void returnInstance()
+    {
+        DBAdapter dbAdapter=null;
+        dbAdapter.getInstance(this).onCreate(sqLiteDatabase);
+    }
+
 }

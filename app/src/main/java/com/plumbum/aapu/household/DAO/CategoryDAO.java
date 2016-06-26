@@ -6,8 +6,6 @@ import android.database.Cursor;
 import com.plumbum.aapu.household.Database.DBAdapter;
 import com.plumbum.aapu.household.VO.CategoryVO;
 
-import java.sql.Blob;
-
 /**
  * Created by Dawn on 6/18/2016.
  */
@@ -21,7 +19,7 @@ public class CategoryDAO
     private static final String CATEGORY_TABLE_NAME = "CATEGORY";
 
     private static String CATEGORY_NAME = null;
-    private static Blob CATEGORY_ICON = null;
+    private static byte[] CATEGORY_ICON = null;
     private static String CATEGORY_TYPE = null;
     private static int CATEGORY_ID = 0;
 
@@ -70,7 +68,7 @@ public class CategoryDAO
         QUERY = INSERT + CATEGORY_TABLE_NAME + "(category_name,category_icon,category_type) VALUES ('"+CATEGORY_NAME+"','"+CATEGORY_ICON+
                 "','"+CATEGORY_TYPE+"');" ;
 
-        dbAdapter.getInstance(getAppContext()).anyQuery(QUERY);
+        dbAdapter.getInstance(getAppContext()).insertCategory(categoryVO);
     }
 
     /**

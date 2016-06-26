@@ -27,7 +27,8 @@
         android:layout_marginTop="16dp"
         android:layout_below="@id/content_add_transaction_edit_amount"
         android:layout_width="48dp"
-        android:layout_height="48dp" />
+        android:layout_height="48dp"
+        android:onClick="picker"/>
 
 
     <TextView

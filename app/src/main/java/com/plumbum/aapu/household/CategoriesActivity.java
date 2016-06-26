@@ -24,8 +24,8 @@ public class CategoriesActivity extends AppCompatActivity implements Runnable {
     private Thread THREAD_EXPENSE;
     private Thread THREAD_SAVING;
 
-    private String THREAD_NAME_EXPENSE;
-    private String THREAD_NAME_SAVING;
+    private String THREAD_NAME_EXPENSE="EXPENSE";
+    private String THREAD_NAME_SAVING="SAVING";
 
 
     @Override
