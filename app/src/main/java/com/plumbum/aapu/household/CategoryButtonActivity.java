@@ -40,7 +40,8 @@ public class CategoryButtonActivity extends AppCompatActivity {
         dbAdapter.getInstance(this).onCreate(sqLiteDatabase);
 
         viewPager = (ViewPager) findViewById(R.id.content_category_button_pager);
-        setupViewPager(viewPager);
+        setupViewPager(viewPager);// a method
+
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);

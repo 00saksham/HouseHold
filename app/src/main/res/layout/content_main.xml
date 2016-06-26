@@ -4,99 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.plumbum.aapu.household.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <ImageView
-        android:layout_alignParentRight="true"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:id="@+id/abcd"/>
-   <!-- <android.support.v7.widget.CardView
-        android:id="@+id/content_main_card"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-
-        <RelativeLayout
+        <android.support.v4.view.ViewPager
+            android:id="@+id/content_main_viewPager"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+        </android.support.v4.view.ViewPager>
+    </RelativeLayout>
 
-            <TextView
-                android:id="@+id/content_main_card_overview"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:text="Overview"
-                android:textSize="34sp"
-                android:textStyle="bold" />
-
-            <RelativeLayout
-
-                android:id="@+id/content_main_card_inflow"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/content_main_card_overview"
-                android:layout_marginTop="30dp">
-
-                <TextView
-
-                    android:id="@+id/content_main_card_inflowtext"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="Inflow"
-                    android:textSize="24sp" />
-
-                <TextView
-                    android:id="@+id/content_main_card_inflowvalue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="10dp"
-                    android:text="0"
-                    android:textSize="24sp" />
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/content_main_card_outflow"
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/content_main_card_inflow"
-                android:layout_marginTop="10dp">
-
-                <TextView
-                    android:id="@+id/content_main_card_outflowtext"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:text="Outflow"
-                    android:textSize="24sp" />
-
-                <TextView
-                    android:id="@+id/content_main_card_outflowvalue"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="10dp"
-                    android:text="0"
-                    android:textSize="24sp" />
-            </RelativeLayout>
-        </RelativeLayout>
-    </android.support.v7.widget.CardView>
-
-    <android.support.v4.view.ViewPager
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/content_main_card"
-        android:layout_marginTop="20dp">
-
-    </android.support.v4.view.ViewPager>-->
     <ListView
         android:id="@+id/content_main_drawerList"
         android:layout_width="250dp"
