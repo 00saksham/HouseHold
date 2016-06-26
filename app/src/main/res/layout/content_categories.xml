@@ -10,10 +10,6 @@
     tools:context="com.plumbum.aapu.household.CategoriesActivity"
     tools:showIn="@layout/activity_categories">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -79,7 +75,6 @@
 
             </android.support.v7.widget.CardView>
         </RelativeLayout>
-    </ScrollView>
     <ListView
         android:id="@+id/content_categories_drawerList"
         android:layout_width="250dp"

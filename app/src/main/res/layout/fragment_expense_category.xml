@@ -3,26 +3,6 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello"
-        android:id="@+id/button23"
-        android:clickable="true"/>
-    <Button
-        android:id="@+id/helme"
-        android:layout_alignParentRight="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="bye"
-        />
-    <TextView
-        android:id="@+id/hellloo"
-        android:layout_marginTop="100dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="heelo"
-        android:textSize="24sp"/>
     <ListView
         android:id="@+id/fragment_expense_category_list"
         android:layout_width="match_parent"

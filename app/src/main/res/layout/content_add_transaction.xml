@@ -20,6 +20,7 @@
         android:layout_marginBottom="16dp"
         android:layout_marginTop="36dp"
         android:hint="Amount"
+        android:inputType="number"
         android:textSize="24sp" />
 
     <ImageView
@@ -52,6 +53,17 @@
         android:layout_marginTop="30dp"
         android:hint="Remarks"
         android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/content_add_transaction_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/content_add_transaction_remarks"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="8dp"
+        android:hint="Date"
+        android:textSize="24sp"
+        android:onClick="picker"/>
 
     
 

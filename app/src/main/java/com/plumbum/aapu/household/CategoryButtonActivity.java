@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.plumbum.aapu.household.Database.DBAdapter;
+import com.plumbum.aapu.household.Implementaion.CategoryImplementation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +23,8 @@ public class CategoryButtonActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     ViewPager viewPager;
     SQLiteDatabase sqLiteDatabase;
+    CategoryImplementation categoryImplementation=null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,8 @@ public class CategoryButtonActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         sqLiteDatabase = openOrCreateDatabase("HouseHold",MODE_PRIVATE,null);
+        DBAdapter dbAdapter = null;
+        dbAdapter.getInstance(this).onCreate(sqLiteDatabase);
 
         viewPager = (ViewPager) findViewById(R.id.content_category_button_pager);
         setupViewPager(viewPager);
@@ -95,5 +100,8 @@ public class CategoryButtonActivity extends AppCompatActivity {
         DBAdapter dbAdapter=null;
         dbAdapter.getInstance(this).onCreate(sqLiteDatabase);
     }
+
+
+
 
 }

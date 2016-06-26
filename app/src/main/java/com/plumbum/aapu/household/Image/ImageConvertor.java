@@ -41,6 +41,16 @@ public class ImageConvertor
         return bitmap;
     }
 
+    public byte[] convertBitmapInByte(Bitmap bitmap)
+    {
+
+        byteArrayOutputStream = new ByteArrayOutputStream();
+
+        bitmap.compress(Bitmap.CompressFormat.PNG, 0, byteArrayOutputStream);
+        return byteArrayOutputStream.toByteArray();
+
+    }
+
     public byte[][] getAllImages()
     {
         imageResources[0]= convertImageInByte(R.drawable.category_icon_1);

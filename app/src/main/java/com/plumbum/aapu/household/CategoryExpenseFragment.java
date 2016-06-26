@@ -1,26 +1,33 @@
 package com.plumbum.aapu.household;
 
-import android.app.FragmentManager;
+import android.app.Activity;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
-import com.borax12.materialdaterangepicker.date.DatePickerDialog;
-import com.plumbum.aapu.household.Implementaion.DebtImplementation;
+import com.plumbum.aapu.household.Cursors.CategoryActivityCursor;
+import com.plumbum.aapu.household.Implementaion.CategoryImplementation;
 
 import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 
 /**
  * @desc  A fragment use to represent Expense Category List In Category Button
  */
-public class CategoryExpenseFragment extends Fragment implements DatePickerDialog.OnDateSetListener {
+public class CategoryExpenseFragment extends Fragment {
+
+
+    private String GET_EXPENSE_LIST_SQL ="SELECT _id as _id,CATEGORY_NAME AS CATEGORY_NAME,CATEGORY_ICON AS CATEGORY_ICON FROM CATEGORY WHERE CATEGORY_TYPE='expense';";
+
+    CategoryImplementation categoryImplementation = null;
+
 
     /**
      * Called when the Fragment is visible to the user.  This is generally
@@ -33,70 +40,57 @@ public class CategoryExpenseFragment extends Fragment implements DatePickerDialo
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_expense_category, container, false);
-
-        Button button = (Button) view.findViewById(R.id.button23);
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                picker();
-
-            }
-        });
-
         return view;
     }
 
-
-
     /**
-     * @param view           The view associated with this listener.
-     * @param year           The year that was set.
-     * @param monthOfYear    The month that was set (0-11) for compatibility
-     *                       with {@link Calendar}.
-     * @param dayOfMonth     The day of the month that was set.
-     * @param yearEnd
-     * @param monthOfYearEnd
-     * @param dayOfMonthEnd
+     * Called immediately after {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}
+     * has returned, but before any saved state has been restored in to the view.
+     * This gives subclasses a chance to initialize themselves once
+     * they know their view hierarchy has been completely created.  The fragment's
+     * view hierarchy is not however attached to its parent at this point.
+     *
+     * @param view               The View returned by {@link #onCreateView(LayoutInflater, ViewGroup, Bundle)}.
+     * @param savedInstanceState If non-null, this fragment is being re-constructed
      */
     @Override
-    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int yearEnd, int monthOfYearEnd, int dayOfMonthEnd)
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        getExpenseList();
+
+        ListView listView = (ListView) getView().findViewById(R.id.fragment_expense_category_list);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Cursor cursor = (Cursor) parent.getItemAtPosition(position);
+
+                cursor.moveToPosition(position);
+                int index= cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
+
+                Intent data = new Intent();
+                data.putExtra("Index",index);
+                getActivity().setResult(Activity.RESULT_OK,data);
+                getActivity().finish();
+            }
+        });
+    }
+
+    /**
+     * @desc    Use to get Expense List from database and set in XML
+     */
+    private void getExpenseList()
     {
+        Cursor cursor = categoryImplementation.getInstance().fetchCategory(GET_EXPENSE_LIST_SQL);
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd");
-        Calendar calender = null;
-        calender.set(year,monthOfYear,dayOfMonth);
-        String formatDate = simpleDateFormat.format(calender);
+        Log.v("Cursor",Integer.toString(cursor.getCount()));
 
-        try {
-            date = (Date) simpleDateFormat.parse(formatDate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        CategoryActivityCursor categoryActivityExpenseCursor = new CategoryActivityCursor(this.getContext(),cursor,0);
+
+        ListView listView = (ListView) getView().findViewById(R.id.fragment_expense_category_list);
+        listView.setAdapter(categoryActivityExpenseCursor);
     }
 
-    public void picker()
-    {
-        Calendar now = Calendar.getInstance();
-        DatePickerDialog dpd = DatePickerDialog.newInstance(
-                CategoryExpenseFragment.this,
-                now.get(Calendar.YEAR),
-                now.get(Calendar.MONTH),
-                now.get(Calendar.DAY_OF_MONTH)
-        );
-        FragmentManager fragmentManager = getActivity().getFragmentManager(); // See the IMPORT
-        dpd.show(fragmentManager,"Hello");
-    }
 
-    public void addData()
-    {
 
-        DebtImplementation.getInstance().addDebt(200,"me",null,"hello","no",false);
-    }
-
-    public void showData() throws ParseException {
-        Cursor cursor = DebtImplementation.getInstance().fetchDebt("Select date_to from debt");
-        cursor.moveToLast();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd");
-        date = (Date) simpleDateFormat.parse(cursor.getString(0));
-    }
 }

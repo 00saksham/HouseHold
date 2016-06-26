@@ -1,7 +1,5 @@
 package com.plumbum.aapu.household.VO;
 
-import java.sql.Blob;
-
 /**
  * Created by Dawn on 6/18/2016.
  */
@@ -10,7 +8,7 @@ public class TransactionVO
     double sum;
     String date;
     String remarks;
-    Blob category_icon;
+    byte[] category_icon;
     String category_name;
     String category_type;
 
@@ -24,11 +22,11 @@ public class TransactionVO
 
     int id;
 
-    public Blob getCategory_icon() {
+    public byte[] getCategory_icon() {
         return category_icon;
     }
 
-    public void setCategory_icon(Blob category_icon) {
+    public void setCategory_icon(byte[] category_icon) {
         this.category_icon = category_icon;
     }
 

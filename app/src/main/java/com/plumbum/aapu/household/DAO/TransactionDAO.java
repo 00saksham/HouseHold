@@ -6,8 +6,6 @@ import android.database.Cursor;
 import com.plumbum.aapu.household.Database.DBAdapter;
 import com.plumbum.aapu.household.VO.TransactionVO;
 
-import java.sql.Blob;
-
 /**
  * Created by Dawn on 6/18/2016.
  */
@@ -25,7 +23,8 @@ public class TransactionDAO
     private static String DATE=null;
     private static String REMARKS=null;
     private static String CATEGORY_NAME = null;
-    private static Blob CATEGORY_ICON = null;
+    private static String CATEGORY_TYPE = null;
+    private static byte[] CATEGORY_ICON ;
 
 
     /*
@@ -68,7 +67,7 @@ public class TransactionDAO
     public void addQuery(TransactionVO transactionVO)
     {
 
-        dbAdapter.getInstance(getAppContext()).anyQuery(QUERY);
+        dbAdapter.getInstance(getAppContext()).insertTransaction(transactionVO);
     }
 
     /**

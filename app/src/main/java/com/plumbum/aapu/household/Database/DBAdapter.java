@@ -61,6 +61,7 @@ public class DBAdapter extends SQLiteOpenHelper
     private static final String TRANSACTION_COLUMN_REMARKS = "REMARKS ";
     private static final String TRANSACTION_COLUMN_CATEGORY_NAME = "CATEGORY_NAME ";
     private static final String TRANSACTION_COLUMN_CATEGORY_ICON = "CATEGORY_ICON ";
+    private static final String TRANSACTION_COLUMN_CATEGORY_TYPE = "CATEGORY_TYPE";
 
     private static final String USER_COLUMN_NAME = "USERNAME";
     private static final String USER_COLUMN_BALANCE = "USER_BALANCE";
@@ -130,7 +131,7 @@ public class DBAdapter extends SQLiteOpenHelper
                                           TRANSACTION_COLUMN_SUM + DOUBLE_NOT_NULL + TRANSACTION_COLUMN_DATE + VARCHAR_20_NOT_NULL +
                                           TRANSACTION_COLUMN_REMARKS + VARCHAR_100 +
                                           TRANSACTION_COLUMN_CATEGORY_NAME + VARCHAR_20_NOT_NULL +
-                                          CATEGORY_COLUMN_CATEGORY_TYPE +""+ VARCHAR_20_NOT_NULL +
+                                          TRANSACTION_COLUMN_CATEGORY_TYPE +""+ VARCHAR_20_NOT_NULL +
                                           TRANSACTION_COLUMN_CATEGORY_ICON +BLOB_NOT_NULL + ");";
 
         db.execSQL(CREATE_USER_TABLE);
@@ -208,7 +209,17 @@ public class DBAdapter extends SQLiteOpenHelper
 
     public void insertTransaction(TransactionVO transactionVO)
     {
+        ContentValues contentValues = new ContentValues();
 
+        contentValues.put(TRANSACTION_COLUMN_SUM,transactionVO.getSum());
+        contentValues.put(TRANSACTION_COLUMN_REMARKS,transactionVO.getRemarks());
+        contentValues.put(TRANSACTION_COLUMN_DATE,transactionVO.getDate());
+        contentValues.put(TRANSACTION_COLUMN_CATEGORY_NAME,transactionVO.getCategory_name());
+        contentValues.put(TRANSACTION_COLUMN_CATEGORY_ICON,transactionVO.getCategory_icon());
+        contentValues.put(TRANSACTION_COLUMN_CATEGORY_TYPE,transactionVO.getCategory_type());
+
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        sqLiteDatabase.insert(TRANSACTIONS_TABLE_NAME,null,contentValues);
     }
 
 }
