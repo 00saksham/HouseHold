@@ -21,7 +21,7 @@ public class TransactionDAO
     private static final String INSERT = "INSERT INTO ";
 
     private static int TRANSACTION_ID=0;
-    private static float SUM=0;
+    private static double SUM=0;
     private static String DATE=null;
     private static String REMARKS=null;
     private static String CATEGORY_NAME = null;

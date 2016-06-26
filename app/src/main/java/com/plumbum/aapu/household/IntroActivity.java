@@ -11,6 +11,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.plumbum.aapu.household.Database.DBAdapter;
+import com.plumbum.aapu.household.Database.Initialize;
+import com.plumbum.aapu.household.Image.ImageConvertor;
+import com.plumbum.aapu.household.Implementaion.UserImplementation;
 
 import java.io.File;
 
@@ -20,9 +23,12 @@ public class IntroActivity extends AppCompatActivity {
     SharedPreferences.Editor sharedPreferencesEditor;
     SQLiteDatabase sqLiteDatabase;
     DBAdapter dbAdapter = null;
+    UserImplementation userImplementation=null;
+    ImageConvertor imageConvertor;
+    Initialize initialize;
 
     String userName;
-    int userStartingBalance;
+    double userStartingBalance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,11 +66,9 @@ public class IntroActivity extends AppCompatActivity {
         EditText editTextName = (EditText) findViewById(R.id.activity_intro_user_name);
         EditText editTextSum = (EditText) findViewById(R.id.activity_intro_user_starting_balance);
 
-        sharedPreferences = getSharedPreferences("UserDetails", Context.MODE_PRIVATE);
-        sharedPreferencesEditor = sharedPreferences.edit();
 
         if (editTextSum.getText().toString().length() != 0) {
-            userStartingBalance = Integer.valueOf(editTextSum.getText().toString());
+            userStartingBalance = Double.valueOf(editTextSum.getText().toString());
         } else {
             userStartingBalance = 0;
         }
@@ -74,10 +78,8 @@ public class IntroActivity extends AppCompatActivity {
         if (userName.length() != 0) {
 
 
-            if (editTextSum.getText().toString().length() != 0) {
-                sharedPreferencesEditor.putInt("userStartingBalance", userStartingBalance);
-                sharedPreferencesEditor.putString("userName", userName);
-
+            if (editTextSum.getText().toString().length() != 0)
+            {
                 initializeDatabase();
             } else {
                 Toast.makeText(getApplicationContext(), "Please Enter an Amount",
@@ -97,6 +99,21 @@ public class IntroActivity extends AppCompatActivity {
     {
         sqLiteDatabase = openOrCreateDatabase("HouseHold",MODE_PRIVATE,null);
         dbAdapter.getInstance(this).onCreate(sqLiteDatabase);
+
+        imageConvertor = new ImageConvertor(this);
+        initialize = new Initialize();
+
+        userImplementation.getInstance().addUser(userName,userStartingBalance);
+
+        String expense_array[] = getResources().getStringArray(R.array.category_expense);
+        String saving_array[]  = getResources().getStringArray(R.array.category_saving);
+        String extra_array[]   = getResources().getStringArray(R.array.Extra);
+
+        byte[][] imageBytes = imageConvertor.getAllImages();
+
+        initialize.initializeExpenseCategory(expense_array,imageBytes);
+        initialize.initializeSavingCategory(saving_array,imageBytes);
+        initialize.initializeExtra(extra_array,imageBytes);
 
         startMainActivity();
     }

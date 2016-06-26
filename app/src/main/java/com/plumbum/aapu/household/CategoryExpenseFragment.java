@@ -90,7 +90,7 @@ public class CategoryExpenseFragment extends Fragment implements DatePickerDialo
     public void addData()
     {
 
-        DebtImplementation.getInstance().addDebt(200,"me",null,date,"no",false);
+        DebtImplementation.getInstance().addDebt(200,"me",null,"hello","no",false);
     }
 
     public void showData() throws ParseException {

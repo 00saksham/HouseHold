@@ -1,25 +1,26 @@
 package com.plumbum.aapu.household;
 
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
-import android.widget.SimpleCursorAdapter;
 
+import com.plumbum.aapu.household.Cursors.CategoryActivityCursor;
+import com.plumbum.aapu.household.Database.DBAdapter;
 import com.plumbum.aapu.household.Implementaion.CategoryImplementation;
 
 public class CategoriesActivity extends AppCompatActivity implements Runnable {
 
     CategoryImplementation categoryImplementation;
-    private String GET_SAVING_LIST_SQL = "SELECT * FROM CATEGORY WHERE CATEGORY_TYPE='EXPENSE'";
-    private String GET_EXPENSE_LIST_SQL ="SELECT * FROM CATEGORY WHERE CATEGORY_TYPE='SAVING'" ;
 
-    private String CATEGORY_ICON ="category_icon";
-    private String CATEGORY_NAME ="category_name";
+    private String GET_SAVING_LIST_SQL = "SELECT _id as _id,CATEGORY_NAME AS CATEGORY_NAME,CATEGORY_ICON AS CATEGORY_ICON FROM CATEGORY WHERE CATEGORY_TYPE='saving';";
+    private String GET_EXPENSE_LIST_SQL ="SELECT _id as _id,CATEGORY_NAME AS CATEGORY_NAME,CATEGORY_ICON AS CATEGORY_ICON FROM CATEGORY WHERE CATEGORY_TYPE='expense';";
 
     private Thread THREAD_EXPENSE;
     private Thread THREAD_SAVING;
@@ -34,6 +35,10 @@ public class CategoriesActivity extends AppCompatActivity implements Runnable {
         setContentView(R.layout.activity_categories);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        SQLiteDatabase  sqLiteDatabase = openOrCreateDatabase("HouseHold",MODE_PRIVATE,null);
+        DBAdapter dbAdapter = null;
+        dbAdapter.getInstance(this).onCreate(sqLiteDatabase);
 
         start();    //Use to start everything in the thread
 
@@ -55,13 +60,12 @@ public class CategoriesActivity extends AppCompatActivity implements Runnable {
     {
         Cursor cursor = categoryImplementation.getInstance().fetchCategory(GET_EXPENSE_LIST_SQL);
 
+        Log.v("Cursor",Integer.toString(cursor.getCount()));
+
+        CategoryActivityCursor categoryActivityExpenseCursor = new CategoryActivityCursor(this,cursor,0);
+
         ListView listView = (ListView) findViewById(R.id.content_categories_list_expense);
-
-        String[] from = new String[]{CATEGORY_NAME,CATEGORY_ICON};
-        int[] to = new int[] {R.id.category_list_card_view_category_name,R.id.category_list_card_view_category_icon};
-
-        SimpleCursorAdapter simpleCursorAdapter = new SimpleCursorAdapter(this,R.layout.category_list_card_view,cursor,from,to,0);
-        listView.setAdapter(simpleCursorAdapter);
+        listView.setAdapter(categoryActivityExpenseCursor);
     }
 
     /**
@@ -71,13 +75,12 @@ public class CategoriesActivity extends AppCompatActivity implements Runnable {
     {
         Cursor cursor = categoryImplementation.getInstance().fetchCategory(GET_SAVING_LIST_SQL);
 
+        Log.v("Cursor Saving",Integer.toString(cursor.getCount()));
+
+        CategoryActivityCursor categoryActivityExpenseCursor = new CategoryActivityCursor(this,cursor,0);
+
         ListView listView = (ListView) findViewById(R.id.content_categories_list_saving);
-
-        String[] from = new String[]{CATEGORY_NAME,CATEGORY_ICON};
-        int[] to = new int[] {R.id.category_list_card_view_category_name,R.id.category_list_card_view_category_icon};
-
-        SimpleCursorAdapter simpleCursorAdapter = new SimpleCursorAdapter(this,R.layout.category_list_card_view,cursor,from,to,0);
-        listView.setAdapter(simpleCursorAdapter);
+        listView.setAdapter(categoryActivityExpenseCursor);
     }
 
     /**

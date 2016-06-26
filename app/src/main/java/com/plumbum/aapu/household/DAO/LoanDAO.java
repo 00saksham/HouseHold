@@ -19,7 +19,7 @@ public class LoanDAO
     private static final String INSERT = "INSERT INTO ";
 
     private static int LOAN_ID=0;
-    private static float SUM=0;
+    private static double SUM=0;
     private static String DATE_FROM=null;
     private static String DATE_TO=null;
     private static String LENDER=null;

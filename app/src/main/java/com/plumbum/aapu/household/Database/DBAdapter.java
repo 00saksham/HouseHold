@@ -109,7 +109,7 @@ public class DBAdapter extends SQLiteOpenHelper
                                       USER_COLUMN_NAME + VARCHAR_20 +
                                       USER_COLUMN_BALANCE + DOUBLE +
                                       USER_COLUMN_EXPENSE_AMOUNT + DOUBLE +
-                                      USER_COLUMN_SAVING_AMOUNT + "DOUBLE );";
+                                      USER_COLUMN_SAVING_AMOUNT + " DOUBLE );";
 
         String CREATE_CATEGORY_TABLE = CREATE + CATEGORY_TABLE_NAME + "(" + ID +
                                        CATEGORY_COLUMN_CATEGORY_NAME +""+ VARCHAR_20_NOT_NULL +

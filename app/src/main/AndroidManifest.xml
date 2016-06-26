@@ -17,6 +17,8 @@
         <activity
             android:name=".IntroActivity"
             android:theme="@style/AppTheme.NoActionBar">
+
+
         </activity>
         <activity
             android:name=".AddTransactionActivity"
@@ -33,16 +35,18 @@
             android:name=".CategoryButtonActivity"
             android:label="@string/title_activity_category_button"
             android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+        <activity
+            android:name=".CategoriesActivity"
+            android:label="@string/title_activity_categories"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".CategoriesActivity"
-            android:label="@string/title_activity_categories"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".DebtsLoanActivity"
             android:label="@string/title_activity_debts_loan"

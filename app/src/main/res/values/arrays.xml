@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="category_expense">
+        <item>Study</item>
+        <item>Stocks</item>
+        <item>Games</item>
+        <item>Favourite</item>
+        <item>Work</item>
+        <item>Newspaper</item>
+        <item>Clothing</item>
+        <item>Food</item>
+        <item>Barber</item>
+        <item>Prize</item>
+    </string-array>
+
+    <string-array name="category_saving">
+        <item>Market</item>
+        <item>Deposit</item>
+        <item>Salary</item>
+        <item>Bank</item>
+        <item>Extras</item>
+        <item>Gift</item>
+    </string-array>
+
+    <string-array name="Extra">
+        <item>item_1</item>
+        <item>item_2</item>
+        <item>item_3</item>
+        <item>item_4</item>
+        <item>item_5</item>
+        <item>item_6</item>
+        <item>item_7</item>
+        <item>item_8</item>
+    </string-array>
+
+</resources>
