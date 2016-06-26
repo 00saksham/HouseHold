@@ -8,16 +8,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
+import com.borax12.materialdaterangepicker.date.DatePickerDialog;
 import com.plumbum.aapu.household.Implementaion.DebtImplementation;
-import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
+import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
-
 
 /**
  * @desc  A fragment use to represent Expense Category List In Category Button
@@ -29,7 +27,7 @@ public class CategoryExpenseFragment extends Fragment implements DatePickerDialo
      * tied to {@link } of the containing
      * Activity's lifecycle.
      */
-    String formatDate;
+    Date date;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -45,12 +43,36 @@ public class CategoryExpenseFragment extends Fragment implements DatePickerDialo
             }
         });
 
-        picker();
-
         return view;
     }
 
 
+
+    /**
+     * @param view           The view associated with this listener.
+     * @param year           The year that was set.
+     * @param monthOfYear    The month that was set (0-11) for compatibility
+     *                       with {@link Calendar}.
+     * @param dayOfMonth     The day of the month that was set.
+     * @param yearEnd
+     * @param monthOfYearEnd
+     * @param dayOfMonthEnd
+     */
+    @Override
+    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth, int yearEnd, int monthOfYearEnd, int dayOfMonthEnd)
+    {
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd");
+        Calendar calender = null;
+        calender.set(year,monthOfYear,dayOfMonth);
+        String formatDate = simpleDateFormat.format(calender);
+
+        try {
+            date = (Date) simpleDateFormat.parse(formatDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void picker()
     {
@@ -68,47 +90,13 @@ public class CategoryExpenseFragment extends Fragment implements DatePickerDialo
     public void addData()
     {
 
-        DebtImplementation.getInstance().addDebt(200,"me",null,formatDate,"no",false);
+        DebtImplementation.getInstance().addDebt(200,"me",null,date,"no",false);
     }
 
     public void showData() throws ParseException {
         Cursor cursor = DebtImplementation.getInstance().fetchDebt("Select date_to from debt");
         cursor.moveToLast();
-        String newDate = cursor.getString(0);
-
-        TextView textView = (TextView) getActivity().findViewById(R.id.hellloo);
-        textView.setText(newDate);
-    }
-
-    /**
-     * @param view        The view associated with this listener.
-     * @param year        The year that was set.
-     * @param monthOfYear The month that was set (0-11) for compatibility
-     *                    with {@link Calendar}.
-     * @param dayOfMonth  The day of the month that was set.
-     */
-    @Override
-    public void onDateSet(DatePickerDialog view, int year, int monthOfYear, int dayOfMonth)
-    {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");  // Remember the capital month
-
-        Calendar calender = new GregorianCalendar(year,monthOfYear,dayOfMonth);
-
-
-        formatDate = simpleDateFormat.format(calender.getTime());
-
-
-        TextView textView = (TextView) getView().findViewById(R.id.hellloobi);
-        TextView textd = (TextView)  getView().findViewById(R.id.hellloobiy);
-
-        String date = "You picked the following date: "+dayOfMonth+"/"+(monthOfYear+1)+"/"+year;
-        textView.setText(date);
-        textd.setText(formatDate);
-        addData();
-        try {
-            showData();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd");
+        date = (Date) simpleDateFormat.parse(cursor.getString(0));
     }
 }
