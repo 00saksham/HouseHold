@@ -1,16 +1,14 @@
 package com.plumbum.aapu.household.VO;
 
-import java.sql.Date;
-
 /**
  * Created by Dawn on 6/18/2016.
  */
 public class LoanVO
 {
-    float sum;
+    double sum;
     String lender;
-    Date from;
-    Date to;
+    String fromDate;
+    String toDate;
     String remarks;
     Boolean exclude;
     int id;
@@ -21,14 +19,6 @@ public class LoanVO
 
     public void setExclude(Boolean exclude) {
         this.exclude = exclude;
-    }
-
-    public Date getFrom() {
-        return from;
-    }
-
-    public void setFrom(Date from) {
-        this.from = from;
     }
 
     public int getId() {
@@ -55,19 +45,27 @@ public class LoanVO
         this.remarks = remarks;
     }
 
-    public float getSum() {
+    public double getSum() {
         return sum;
     }
 
-    public void setSum(float sum) {
+    public void setSum(double sum) {
         this.sum = sum;
     }
 
-    public Date getTo() {
-        return to;
+    public String getFromDate() {
+        return fromDate;
     }
 
-    public void setTo(Date to) {
-        this.to = to;
+    public void setFromDate(String fromDate) {
+        this.fromDate = fromDate;
+    }
+
+    public String getToDate() {
+        return toDate;
+    }
+
+    public void setToDate(String toDate) {
+        this.toDate = toDate;
     }
 }

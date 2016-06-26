@@ -7,7 +7,6 @@ import com.plumbum.aapu.household.Database.DBAdapter;
 import com.plumbum.aapu.household.VO.TransactionVO;
 
 import java.sql.Blob;
-import java.sql.Date;
 
 /**
  * Created by Dawn on 6/18/2016.
@@ -23,7 +22,7 @@ public class TransactionDAO
 
     private static int TRANSACTION_ID=0;
     private static float SUM=0;
-    private static Date DATE=null;
+    private static String DATE=null;
     private static String REMARKS=null;
     private static String CATEGORY_NAME = null;
     private static Blob CATEGORY_ICON = null;
@@ -68,14 +67,6 @@ public class TransactionDAO
 
     public void addQuery(TransactionVO transactionVO)
     {
-        SUM = transactionVO.getSum();
-        DATE = transactionVO.getDate();
-        REMARKS = transactionVO.getRemarks();
-        CATEGORY_NAME = transactionVO.getCategory_name();
-        CATEGORY_ICON = transactionVO.getCategory_icon();
-
-        QUERY = INSERT + TRANSACTION_TABLE_NAME + "(sum,date,remarks,category_name,category_icon) VALUES ('"+SUM+"','"+DATE+"','"+
-                REMARKS+"','"+CATEGORY_NAME+"','"+CATEGORY_ICON+"');";
 
         dbAdapter.getInstance(getAppContext()).anyQuery(QUERY);
     }

@@ -8,7 +8,6 @@ import com.plumbum.aapu.household.Interface.TransactionInterface;
 import com.plumbum.aapu.household.VO.TransactionVO;
 
 import java.sql.Blob;
-import java.sql.Date;
 
 /**
  * Created by Dawn on 6/18/2016.
@@ -67,13 +66,14 @@ public class TransactionImplementation implements TransactionInterface
      */
 
     @Override
-    public void addTransaction(float sum, Date date, String remarks, Blob category_icon, String category_name)
+    public void addTransaction(double sum, String date, String remarks, Blob category_icon, String category_name,String category_type)
     {
         transactionVO.setSum(sum);
         transactionVO.setDate(date);
         transactionVO.setRemarks(remarks);
         transactionVO.setCategory_name(category_name);
         transactionVO.setCategory_icon(category_icon);
+        transactionVO.setCategory_type(category_type);
 
         transactionDAO.getInstance(getAppContext()).addQuery(transactionVO);
 
@@ -116,13 +116,14 @@ public class TransactionImplementation implements TransactionInterface
      */
 
     @Override
-    public void updateTransaction(int id, float sum, Date date, String remarks, Blob category_icon, String category_name)
+    public void updateTransaction(int id, double sum, String date, String remarks, Blob category_icon, String category_name,String category_type)
     {
         transactionVO.setSum(sum);
         transactionVO.setDate(date);
         transactionVO.setRemarks(remarks);
         transactionVO.setCategory_name(category_name);
         transactionVO.setCategory_icon(category_icon);
+        transactionVO.setCategory_type(category_type);
 
         transactionDAO.getInstance(getAppContext()).updateQuery(transactionVO);
     }

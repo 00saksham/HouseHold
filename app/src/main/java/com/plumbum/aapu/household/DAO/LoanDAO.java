@@ -6,8 +6,6 @@ import android.database.Cursor;
 import com.plumbum.aapu.household.Database.DBAdapter;
 import com.plumbum.aapu.household.VO.LoanVO;
 
-import java.sql.Date;
-
 /**
  * Created by Dawn on 6/18/2016.
  */
@@ -22,8 +20,8 @@ public class LoanDAO
 
     private static int LOAN_ID=0;
     private static float SUM=0;
-    private static Date DATE_FROM=null;
-    private static Date DATE_TO=null;
+    private static String DATE_FROM=null;
+    private static String DATE_TO=null;
     private static String LENDER=null;
     private static String REMARKS=null;
     private static boolean EXCLUDE=false;
@@ -70,8 +68,8 @@ public class LoanDAO
     {
         SUM = loanVO.getSum();
         LENDER = loanVO.getLender();
-        DATE_FROM = loanVO.getFrom();
-        DATE_TO = loanVO.getTo();
+        DATE_FROM = loanVO.getFromDate();
+        DATE_TO = loanVO.getToDate();
         REMARKS = loanVO.getRemarks();
         EXCLUDE = loanVO.getExclude();
 
@@ -115,8 +113,8 @@ public class LoanDAO
     {
         SUM = loanVO.getSum();
         LENDER = loanVO.getLender();
-        DATE_FROM = loanVO.getFrom();
-        DATE_TO = loanVO.getTo();
+        DATE_FROM = loanVO.getFromDate();
+        DATE_TO = loanVO.getToDate();
         REMARKS = loanVO.getRemarks();
         EXCLUDE = loanVO.getExclude();
 

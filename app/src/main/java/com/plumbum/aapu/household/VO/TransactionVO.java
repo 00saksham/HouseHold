@@ -1,18 +1,27 @@
 package com.plumbum.aapu.household.VO;
 
 import java.sql.Blob;
-import java.sql.Date;
 
 /**
  * Created by Dawn on 6/18/2016.
  */
 public class TransactionVO
 {
-    Float sum;
-    Date date;
+    double sum;
+    String date;
     String remarks;
     Blob category_icon;
     String category_name;
+    String category_type;
+
+    public String getCategory_type() {
+        return category_type;
+    }
+
+    public void setCategory_type(String category_type) {
+        this.category_type = category_type;
+    }
+
     int id;
 
     public Blob getCategory_icon() {
@@ -31,11 +40,11 @@ public class TransactionVO
         this.category_name = category_name;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -55,11 +64,11 @@ public class TransactionVO
         this.remarks = remarks;
     }
 
-    public Float getSum() {
+    public double getSum() {
         return sum;
     }
 
-    public void setSum(Float sum) {
+    public void setSum(double sum) {
         this.sum = sum;
     }
 }

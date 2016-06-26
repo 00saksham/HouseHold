@@ -7,8 +7,6 @@ import com.plumbum.aapu.household.DAO.LoanDAO;
 import com.plumbum.aapu.household.Interface.LoanInterface;
 import com.plumbum.aapu.household.VO.LoanVO;
 
-import java.sql.Date;
-
 /**
  * Created by Dawn on 6/18/2016.
  */
@@ -67,12 +65,12 @@ public class LoanImplementation implements LoanInterface
      */
 
     @Override
-    public void addLoan(float sum, String lender, Date from, Date to, String remarks, Boolean exclude)
+    public void addLoan(double sum, String lender, String from, String to, String remarks, Boolean exclude)
     {
         loanVO.setSum(sum);
         loanVO.setLender(lender);
-        loanVO.setFrom(from);
-        loanVO.setTo(to);
+        loanVO.setFromDate(from);
+        loanVO.setToDate(to);
         loanVO.setRemarks(remarks);
         loanVO.setExclude(exclude);
 
@@ -117,12 +115,12 @@ public class LoanImplementation implements LoanInterface
      * @param   exclude
      */
     @Override
-    public void updateLoan(int id, float sum, String lender, Date from, Date to, String remarks, Boolean exclude)
+    public void updateLoan(int id, double sum, String lender, String from, String to, String remarks, Boolean exclude)
     {
         loanVO.setSum(sum);
         loanVO.setLender(lender);
-        loanVO.setFrom(from);
-        loanVO.setTo(to);
+        loanVO.setFromDate(from);
+        loanVO.setToDate(to);
         loanVO.setRemarks(remarks);
         loanVO.setExclude(exclude);
 

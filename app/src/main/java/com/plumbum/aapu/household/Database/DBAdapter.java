@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.plumbum.aapu.household.VO.CategoryVO;
+import com.plumbum.aapu.household.VO.TransactionVO;
 
 /**
  * Created by Dawn on 6/18/2016.
@@ -26,16 +27,16 @@ public class DBAdapter extends SQLiteOpenHelper
     private static final String VARCHAR_100 = " VARCHAR(100),";
     private static final String VARCHAR_20_NOT_NULL = " VARCHAR(20) NOT NULL ,";
     private static final String BOOLEAN_NOT_NULL = " BOOLEAN NOT NULL";
-    private static final String FLOAT_NOT_NULL = " FLOAT NOT NULL,";
+    private static final String DOUBLE_NOT_NULL = " DOUBLE NOT NULL,";
+    private static final String DOUBLE = " DOUBLE ,";
     private static final String BLOB_NOT_NULL = " BLOB NOT NULL";
-    private static final String DATE = " DATE,";
-    private static final String DATE_NOT_NULL = " DATE NOT NULL,";
     private static final String ID = " _ID INTEGER PRIMARY KEY AUTOINCREMENT ,";
 
     private static final String CATEGORY_TABLE_NAME = "CATEGORY";
     private static final String DEBT_TABLE_NAME = "DEBT";
     private static final String LOAN_TABLE_NAME = "LOAN";
     private static final String TRANSACTIONS_TABLE_NAME = "TRANSACTIONS";
+    private static final String USER_TABLE_NAME = "USER";
 
     private static final String CATEGORY_COLUMN_CATEGORY_NAME = "CATEGORY_NAME ";
     private static final String CATEGORY_COLUMN_CATEGORY_ICON = "CATEGORY_ICON ";
@@ -61,6 +62,10 @@ public class DBAdapter extends SQLiteOpenHelper
     private static final String TRANSACTION_COLUMN_CATEGORY_NAME = "CATEGORY_NAME ";
     private static final String TRANSACTION_COLUMN_CATEGORY_ICON = "CATEGORY_ICON ";
 
+    private static final String USER_COLUMN_NAME = "USERNAME";
+    private static final String USER_COLUMN_BALANCE = "USER_BALANCE";
+    private static final String USER_COLUMN_SAVING_AMOUNT = "USER_SAVING_AMOUNT";
+    private static final String USER_COLUMN_EXPENSE_AMOUNT = "USER_EXPENSE_AMOUNT";
 
 
     /*
@@ -100,26 +105,35 @@ public class DBAdapter extends SQLiteOpenHelper
     @Override
     public void onCreate(SQLiteDatabase db)
     {
+        String CREATE_USER_TABLE = CREATE + USER_TABLE_NAME + "(" + ID +
+                                      USER_COLUMN_NAME + VARCHAR_20 +
+                                      USER_COLUMN_BALANCE + DOUBLE +
+                                      USER_COLUMN_EXPENSE_AMOUNT + DOUBLE +
+                                      USER_COLUMN_SAVING_AMOUNT + "DOUBLE );";
+
         String CREATE_CATEGORY_TABLE = CREATE + CATEGORY_TABLE_NAME + "(" + ID +
                                        CATEGORY_COLUMN_CATEGORY_NAME +""+ VARCHAR_20_NOT_NULL +
                                        CATEGORY_COLUMN_CATEGORY_TYPE +""+ VARCHAR_20_NOT_NULL +
                                        CATEGORY_COLUMN_CATEGORY_ICON +""+ BLOB_NOT_NULL  + ");";
 
         String CREATE_DEBT_TABLE = CREATE + DEBT_TABLE_NAME + "(" + ID +
-                                   DEBT_COLUMN_SUM + FLOAT_NOT_NULL + DEBT_COLUMN_BORROWER +
-                                   VARCHAR_20 + DEBT_COLUMN_DATE_FROM + DATE + DEBT_COLUMN_DATE_TO + DATE +
+                                   DEBT_COLUMN_SUM + DOUBLE_NOT_NULL + DEBT_COLUMN_BORROWER +
+                                   VARCHAR_20 + DEBT_COLUMN_DATE_FROM + VARCHAR_20 + DEBT_COLUMN_DATE_TO + VARCHAR_20 +
                                    DEBT_COLUMN_REMARKS + VARCHAR_100 + DEBT_COLUMN_EXCLUDE + BOOLEAN_NOT_NULL +");";
 
         String CREATE_LOAN_TABLE = CREATE + LOAN_TABLE_NAME + "(" + ID +
-                                   LOAN_COLUMN_SUM + FLOAT_NOT_NULL + LOAN_COLUMN_LENDER + VARCHAR_20 +
-                                   LOAN_COLUMN_DATE_FROM + DATE + LOAN_COLUMN_DATE_TO + DATE +
+                                   LOAN_COLUMN_SUM + DOUBLE_NOT_NULL + LOAN_COLUMN_LENDER + VARCHAR_20 +
+                                   LOAN_COLUMN_DATE_FROM + VARCHAR_20 + LOAN_COLUMN_DATE_TO + VARCHAR_20 +
                                    LOAN_COLUMN_REMARKS + VARCHAR_100 + LOAN_COLUMN_EXCLUDE + BOOLEAN_NOT_NULL +");";
 
         String CREATE_TRANSACTION_TABLE = CREATE + TRANSACTIONS_TABLE_NAME + " (" + ID +
-                                          TRANSACTION_COLUMN_SUM + FLOAT_NOT_NULL + TRANSACTION_COLUMN_DATE + DATE +
-                                          TRANSACTION_COLUMN_REMARKS + VARCHAR_100 + TRANSACTION_COLUMN_CATEGORY_NAME +
-                                          VARCHAR_20_NOT_NULL + TRANSACTION_COLUMN_CATEGORY_ICON +BLOB_NOT_NULL + ");";
+                                          TRANSACTION_COLUMN_SUM + DOUBLE_NOT_NULL + TRANSACTION_COLUMN_DATE + VARCHAR_20_NOT_NULL +
+                                          TRANSACTION_COLUMN_REMARKS + VARCHAR_100 +
+                                          TRANSACTION_COLUMN_CATEGORY_NAME + VARCHAR_20_NOT_NULL +
+                                          CATEGORY_COLUMN_CATEGORY_TYPE +""+ VARCHAR_20_NOT_NULL +
+                                          TRANSACTION_COLUMN_CATEGORY_ICON +BLOB_NOT_NULL + ");";
 
+        db.execSQL(CREATE_USER_TABLE);
         db.execSQL(CREATE_CATEGORY_TABLE);
         db.execSQL(CREATE_DEBT_TABLE);
         db.execSQL(CREATE_LOAN_TABLE);
@@ -137,6 +151,7 @@ public class DBAdapter extends SQLiteOpenHelper
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
     {
+        db.execSQL(DROP+USER_TABLE_NAME);
         db.execSQL(DROP+CATEGORY_TABLE_NAME);
         db.execSQL(DROP+DEBT_TABLE_NAME);
         db.execSQL(DROP+LOAN_TABLE_NAME);
@@ -189,6 +204,11 @@ public class DBAdapter extends SQLiteOpenHelper
         SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
 
         sqLiteDatabase.insert(CATEGORY_TABLE_NAME,null,contentValues);
+    }
+
+    public void insertTransaction(TransactionVO transactionVO)
+    {
+
     }
 
 }

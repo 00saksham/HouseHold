@@ -7,8 +7,6 @@ import com.plumbum.aapu.household.DAO.DebtDAO;
 import com.plumbum.aapu.household.Interface.DebtInterface;
 import com.plumbum.aapu.household.VO.DebtVO;
 
-import java.sql.Date;
-
 /**
  * Created by Dawn on 6/18/2016.
  */
@@ -67,12 +65,12 @@ public class DebtImplementation implements DebtInterface
      */
 
     @Override
-    public void addDebt(float sum, String borrower, Date from, Date to, String remarks, Boolean exclude)
+    public void addDebt(double sum, String borrower, String from, String to, String remarks, Boolean exclude)
     {
         debtVO.setSum(sum);
         debtVO.setBorrower(borrower);
-        debtVO.setFrom(from);
-        debtVO.setTo(to);
+        debtVO.setFromDate(from);
+        debtVO.setToDate(to);
         debtVO.setRemarks(remarks);
         debtVO.setExclude(exclude);
 
@@ -117,12 +115,12 @@ public class DebtImplementation implements DebtInterface
      * @param   exclude
      */
     @Override
-    public void updateDebt(int id, float sum, String borrower, Date from, Date to, String remarks, Boolean exclude)
+    public void updateDebt(int id, double sum, String borrower, String from, String to, String remarks, Boolean exclude)
     {
         debtVO.setSum(sum);
         debtVO.setBorrower(borrower);
-        debtVO.setFrom(from);
-        debtVO.setTo(to);
+        debtVO.setFromDate(from);
+        debtVO.setToDate(to);
         debtVO.setRemarks(remarks);
         debtVO.setExclude(exclude);
 

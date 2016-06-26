@@ -62,12 +62,6 @@ public class CategoryDAO
 
     public void addQuery(CategoryVO categoryVO)
     {
-        CATEGORY_NAME = categoryVO.getCategory_name();
-        CATEGORY_ICON = categoryVO.getCategory_icon();
-        CATEGORY_TYPE = categoryVO.getCategory_type();
-        QUERY = INSERT + CATEGORY_TABLE_NAME + "(category_name,category_icon,category_type) VALUES ('"+CATEGORY_NAME+"','"+CATEGORY_ICON+
-                "','"+CATEGORY_TYPE+"');" ;
-
         dbAdapter.getInstance(getAppContext()).insertCategory(categoryVO);
     }
 
